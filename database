@@ -1,0 +1,166 @@
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+--
+-- Database: `pakar_kacamata`
+--
+
+--
+-- Dumping data untuk tabel `conditions`
+--
+
+INSERT INTO `conditions` (`id_condition`, `condition_code`, `category`, `condition_name`, `description`) VALUES
+(1, 'AGE01', 'usia', 'Anak-anak', 'Usia anak atau remaja'),
+(2, 'AGE02', 'usia', 'Dewasa', 'Usia produktif dewasa'),
+(3, 'AGE03', 'usia', 'Di atas 40 tahun', 'Kategori presbyopia'),
+(4, 'VIS01', 'keluhan', 'Penglihatan jauh kabur', 'Kesulitan melihat objek jauh'),
+(5, 'VIS02', 'keluhan', 'Sulit membaca jarak dekat', 'Kesulitan membaca tulisan kecil'),
+(6, 'VIS03', 'keluhan', 'Mata cepat lelah', 'Mata terasa lelah'),
+(7, 'VIS04', 'keluhan', 'Mata sering merah', 'Mata mudah iritasi'),
+(8, 'VIS05', 'keluhan', 'Silau saat malam', 'Sensitif cahaya saat malam'),
+(9, 'VIS06', 'keluhan', 'Mata sensitif cahaya', 'Mudah silau'),
+(10, 'ACT01', 'aktivitas', 'Sering di depan layar', 'Laptop, komputer, gadget'),
+(11, 'ACT02', 'aktivitas', 'Sering menyetir malam', 'Berkendara malam'),
+(12, 'ACT03', 'aktivitas', 'Aktivitas outdoor', 'Sering di luar ruangan'),
+(13, 'ACT04', 'aktivitas', 'Sering olahraga', 'Aktivitas fisik'),
+(14, 'ACT05', 'aktivitas', 'Sering di ruangan AC', 'Lingkungan AC'),
+(15, 'NEED01', 'kebutuhan', 'Untuk kerja atau kuliah', 'Produktivitas'),
+(16, 'NEED02', 'kebutuhan', 'Untuk berkendara', 'Transportasi'),
+(17, 'NEED03', 'kebutuhan', 'Untuk aktivitas outdoor', 'Aktivitas luar'),
+(18, 'NEED04', 'kebutuhan', 'Untuk sehari-hari', 'Penggunaan umum');
+
+--
+-- Dumping data untuk tabel `frame_kacamata`
+--
+
+INSERT INTO `frame_kacamata` (`id_frame`, `nama_frame`, `bahan`, `id_recommendation`, `deskripsi`) VALUES
+(1, 'Sporty TR90', 'Plastik TR90', 4, 'Frame lentur dan tahan banting, cocok untuk lensa Polycarbonate.'),
+(2, 'Frame Titanium Sport', NULL, 2, 'Sangat ringan dan kuat untuk aktivitas luar ruangan.'),
+(3, 'Frame Acetate Bulat', NULL, 1, 'Gaya klasik yang cocok untuk lensa Blue Ray.');
+
+--
+-- Dumping data untuk tabel `history_diagnosa`
+--
+
+INSERT INTO `history_diagnosa` (`id_history`, `nama_user`, `tanggal`, `id_recommendation`, `hasil_skor`) VALUES
+(1, 'Guest User', '2026-05-12 00:40:22', 3, 1),
+(2, 'Guest User', '2026-05-12 00:53:24', 3, 1),
+(3, 'Guest User', '2026-05-12 00:53:52', 2, 1),
+(4, 'Guest User', '2026-05-12 00:57:23', 2, 1),
+(5, 'Guest User', '2026-05-12 01:02:03', 2, 1),
+(6, 'Guest User', '2026-05-12 03:33:31', 3, 1),
+(7, 'Guest User', '2026-05-12 03:41:24', 1, 1),
+(8, 'Guest User', '2026-05-12 03:42:12', 1, 2),
+(9, 'Guest User', '2026-05-12 03:42:43', 1, 1);
+
+--
+-- Dumping data untuk tabel `prediction_history`
+--
+
+INSERT INTO `prediction_history` (`id`, `usia`, `aktivitas`, `keluhan`, `hasil`, `created_at`) VALUES
+(1, 2, 1, 3, 'Blue Ray Lens', '2026-05-31 08:02:25'),
+(2, 2, 1, 3, 'Blue Ray Lens', '2026-05-31 08:03:23'),
+(3, 2, 1, 3, 'Blue Ray Lens', '2026-05-31 08:04:01'),
+(4, 3, 1, 1, 'Progressive Lens', '2026-05-31 08:21:55'),
+(5, 2, 1, 2, 'Blue Ray Lens', '2026-05-31 15:13:22'),
+(6, 2, 3, 2, 'Blue Ray Lens', '2026-05-31 15:13:49'),
+(7, 2, 3, 7, 'Photochromic Lens', '2026-05-31 15:13:59'),
+(8, 2, 5, 5, 'Anti-Glare Lens', '2026-05-31 15:14:23'),
+(9, 1, 2, 4, 'Blue Ray Lens', '2026-06-01 11:33:06'),
+(10, 2, 2, 4, 'Blue Ray Lens', '2026-06-01 11:33:21'),
+(11, 2, 4, 4, 'Polycarbonate Lens', '2026-06-01 11:33:27'),
+(12, 2, 4, 7, 'Photochromic Lens', '2026-06-01 11:35:24');
+
+--
+-- Dumping data untuk tabel `recommendations`
+--
+
+INSERT INTO `recommendations` (`id_recommendation`, `lens_name`, `lens_category`, `description`, `reasoning`) VALUES
+(1, 'Blue Ray Lens', 'Digital Protection', 'Lensa pelindung sinar biru', 'Mengurangi paparan layar'),
+(2, 'Photochromic Lens', 'Outdoor Protection', 'Lensa berubah gelap saat UV', 'Cocok outdoor'),
+(3, 'Progressive Lens', 'Multifocal', 'Lensa multifokus', 'Cocok usia 40+'),
+(4, 'Polycarbonate Lens', 'Safety Lens', 'Lensa tahan benturan', 'Cocok olahraga'),
+(5, 'Anti-Glare Lens', 'Night Vision', 'Mengurangi silau malam', 'Cocok berkendara malam'),
+(6, 'Standard Lens', 'Standard', 'Lensa standar', 'Penggunaan umum');
+
+--
+-- Dumping data untuk tabel `rules`
+--
+
+INSERT INTO `rules` (`id_rule`, `rule_name`, `id_recommendation`, `confidence_weight`, `reasoning_rule`) VALUES
+(1, 'Rule Blue Ray', 1, 90, 'Paparan layar menyebabkan mata lelah'),
+(2, 'Rule Photochromic', 2, 85, 'Outdoor butuh proteksi UV'),
+(3, 'Rule Progressive', 3, 95, 'Usia 40+ sulit melihat dekat'),
+(4, 'Rule Polycarbonate', 4, 80, 'Olahraga butuh lensa aman'),
+(5, 'Rule Anti Glare', 5, 88, 'Menyetir malam butuh anti silau');
+
+--
+-- Dumping data untuk tabel `rule_details`
+--
+
+INSERT INTO `rule_details` (`id_detail`, `id_rule`, `id_condition`, `weight_score`, `mb`, `md`) VALUES
+(1, 1, 6, 40, 0, 0),
+(2, 1, 10, 40, 0, 0),
+(3, 2, 9, 35, 0, 0),
+(4, 2, 12, 40, 0, 0),
+(5, 3, 3, 40, 0, 0),
+(6, 3, 5, 40, 0, 0),
+(7, 4, 13, 70, 0, 0),
+(8, 5, 8, 50, 0, 0);
+
+--
+-- Dumping data untuk tabel `tips_kesehatan`
+--
+
+INSERT INTO `tips_kesehatan` (`id_tips`, `id_recommendation`, `judul_artikel`, `isi_artikel`) VALUES
+(1, 1, 'Tips Proteksi Mata Radiasi', 'Gunakan aturan 20-20-20 saat menatap layar...'),
+(2, 1, NULL, 'Gunakan aturan 20-20-20: Setiap 20 menit, lihat benda berjarak 20 kaki selama 20 detik.'),
+(3, 2, NULL, 'Pastikan lensa dibersihkan dengan kain microfiber agar lapisan anti-UV tidak tergores.');
+
+--
+-- Dumping data untuk tabel `training_data`
+--
+
+INSERT INTO `training_data` (`id_training`, `usia`, `aktivitas`, `keluhan`, `id_recommendation`) VALUES
+(1, 2, 1, 3, 1),
+(2, 2, 1, 2, 1),
+(3, 2, 2, 3, 1),
+(4, 1, 1, 3, 1),
+(5, 2, 1, 3, 1),
+(6, 3, 1, 3, 1),
+(7, 2, 2, 2, 1),
+(8, 2, 3, 6, 2),
+(9, 3, 3, 6, 2),
+(10, 2, 3, 5, 2),
+(11, 2, 4, 6, 2),
+(12, 3, 3, 5, 2),
+(13, 2, 3, 6, 2),
+(14, 3, 2, 2, 3),
+(15, 3, 1, 2, 3),
+(16, 3, 2, 1, 3),
+(17, 3, 3, 2, 3),
+(18, 3, 2, 2, 3),
+(19, 2, 4, 4, 4),
+(20, 1, 4, 4, 4),
+(21, 2, 4, 3, 4),
+(22, 2, 7, 4, 4),
+(23, 1, 4, 4, 4),
+(24, 2, 6, 5, 5),
+(25, 3, 6, 5, 5),
+(26, 2, 6, 4, 5),
+(27, 2, 6, 5, 5),
+(28, 3, 6, 5, 5),
+(29, 2, 2, 1, 6),
+(30, 1, 2, 1, 6),
+(31, 2, 1, 1, 6),
+(32, 2, 2, 1, 6),
+(33, 3, 2, 1, 6);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
